@@ -1,32 +1,20 @@
 class Solution {
     public int numberOfBeams(String[] bank) {
-        if (bank == null || bank.length == 0) {
-            return 0;
-        }
-        int totalBeams = 0;
-        int prevRowDevices = countDevices(bank[0]);
-        
+        int number = 0, last = mun(bank[0]);
         for (int i = 1; i < bank.length; i++) {
-            int currentRowDevices = countDevices(bank[i]);
-            
-            if (currentRowDevices == 0) {
-                continue;
+            int current = mun(bank[i]);
+            if (current == 0) {
+              continue;
             }
-            
-            totalBeams += prevRowDevices * currentRowDevices;
-            prevRowDevices = currentRowDevices;
+            number += (last * (last = current));
         }
-        
-        return totalBeams;
+        return number;
     }
-    
-    private int countDevices(String row) {
-        int deviceCount = 0;
-        for (char cell : row.toCharArray()) {
-            if (cell == '1') {
-                deviceCount++;
-            }
-        }
-        return deviceCount;
+
+    int mun(String s) {
+        int res = 0;
+        for (int i = 0; i < s.length(); i++)
+            res += (s.charAt(i) - '0');
+        return res;
     }
 }
