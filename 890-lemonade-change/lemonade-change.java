@@ -1,5 +1,8 @@
 class Solution {
     public boolean lemonadeChange(int[] bills) {
+      if(bills[0] != 5){
+        return false;
+      }
       int five = 0;
       int ten = 0;
       for(int bill : bills){
